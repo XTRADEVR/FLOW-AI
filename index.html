@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restorasi Mobil | Dari Karatan Jadi Kinclong</title>
+<meta name="description" content="Jasa restorasi mobil profesional: bodi, cat, mesin, dan interior. Lihat transformasi before-after mobil klasik Anda.">
+<style>
+:root{
+  --bg:#0b0b0d; --bg2:#131316; --card:#1a1a1e; --line:#2a2a30;
+  --text:#ececf0; --muted:#9a9aa5; --accent:#ff5a1f; --accent2:#e11d2e;
+  --metal:linear-gradient(135deg,#3a3a42 0%,#1c1c21 50%,#2f2f37 100%);
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(1140px,92%);margin:0 auto}
+section{padding:84px 0}
+.eyebrow{color:var(--accent);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:8px 0 14px}
+.lead{color:var(--muted);max-width:640px}
+.center{text-align:center}.center .lead{margin:0 auto}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;border:0;cursor:pointer;font-size:1rem;transition:transform .15s,box-shadow .15s,background .15s}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 28px rgba(255,90,31,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(255,90,31,.45)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(11,11,13,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-weight:800;font-size:1.2rem;letter-spacing:.02em}
+.logo span{color:var(--accent)}
+.nav ul{display:flex;gap:26px;list-style:none}
+.nav ul a{color:var(--muted);font-size:.95rem;transition:color .15s}
+.nav ul a:hover{color:var(--text)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:8px 12px;border-radius:10px;font-size:1.1rem;cursor:pointer}
+
+/* HERO */
+.hero{padding:110px 0 90px;background:radial-gradient(900px 420px at 80% -10%,rgba(255,90,31,.22),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(225,29,46,.14),transparent 60%),var(--bg)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);margin:12px 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:520px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.stats{display:flex;gap:34px;margin-top:40px;flex-wrap:wrap}
+.stats b{display:block;font-size:1.8rem;color:var(--text)}
+.stats small{color:var(--muted)}
+.hero-visual{aspect-ratio:4/3;border-radius:22px;border:1px solid var(--line);position:relative;overflow:hidden;background:
+  linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55)),
+  repeating-linear-gradient(115deg,#26262c 0 14px,#1d1d22 14px 28px);
+  box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.hero-visual::after{content:"Foto mobil restorasi";position:absolute;left:18px;bottom:16px;color:#d9d9e0;font-size:.85rem;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:999px}
+.hero-visual .chip{position:absolute;top:16px;right:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:999px}
+
+/* LAYANAN */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.icon{width:48px;height:48px;border-radius:12px;background:var(--metal);display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px;border:1px solid var(--line)}
+.card h3{font-size:1.15rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* GALERI */
+.gallery{background:var(--bg2);border-block:1px solid var(--line)}
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:40px}
+.ba{--pos:50%;position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);user-select:none;background:#000}
+.ba .layer{position:absolute;inset:0;display:flex;align-items:flex-end;padding:16px}
+.ba .before{background:
+  repeating-linear-gradient(45deg,#4a3a30 0 10px,#3a2c24 10px 20px),#3a2c24;filter:saturate(.7)}
+.ba .after{background:linear-gradient(135deg,#ff6a2b 0%,#c3162a 55%,#6b0b17 100%);clip-path:inset(0 0 0 var(--pos))}
+.ba .after::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,transparent 60%)}
+.tag{position:relative;background:rgba(0,0,0,.65);color:#fff;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:999px}
+.ba .after .tag{margin-left:auto}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 12px rgba(0,0,0,.6)}
+.ba .handle::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-weight:800}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-title{margin-top:12px;font-weight:600}
+.ba-sub{color:var(--muted);font-size:.9rem}
+
+/* PROSES */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px;counter-reset:s}
+.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);display:block;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.step h3{font-size:1.05rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.92rem}
+
+/* VIDEO STORY */
+.story{background:radial-gradient(800px 380px at 100% 0%,rgba(255,90,31,.14),transparent 60%),var(--bg2);border-block:1px solid var(--line)}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:34px 0 26px}
+.timeline div{height:10px;border-radius:99px;background:var(--line);position:relative;overflow:hidden}
+.timeline div::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;animation:fill 16s linear infinite}
+.timeline div:nth-child(1)::after{animation-delay:0s;animation-name:f1}
+.timeline div:nth-child(2)::after{animation-name:f2}
+.timeline div:nth-child(3)::after{animation-name:f3}
+.timeline div:nth-child(4)::after{animation-name:f4}
+@keyframes f1{0%{transform:scaleX(0)}25%,100%{transform:scaleX(1)}}
+@keyframes f2{0%,25%{transform:scaleX(0)}50%,100%{transform:scaleX(1)}}
+@keyframes f3{0%,50%{transform:scaleX(0)}75%,100%{transform:scaleX(1)}}
+@keyframes f4{0%,75%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+.scenes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.scene{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:12px}
+.scene-head{display:flex;justify-content:space-between;align-items:center}
+.scene-head b{font-size:1.05rem}
+.time{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:.78rem;padding:4px 10px;border-radius:999px}
+.scene dl dt{color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:8px}
+.scene dl dd{color:#d6d6de;font-size:.92rem}
+.prompt-box{margin-top:34px;background:#0e0e11;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.prompt-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card)}
+.prompt-top b{font-size:.95rem}
+.prompt-box pre{white-space:pre-wrap;word-wrap:break-word;padding:20px;font:.92rem/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d9d9e2;max-height:420px;overflow:auto}
+.copied{background:#16a34a!important;box-shadow:none!important}
+
+/* TESTIMONI */
+.quote{position:relative}
+.quote p{font-size:.98rem;margin-bottom:18px}
+.who{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--metal);display:grid;place-items:center;font-weight:700;border:1px solid var(--line)}
+.who small{color:var(--muted);display:block}
+.stars{color:var(--accent);letter-spacing:2px;margin-bottom:10px}
+
+/* KONTAK */
+.contact{background:radial-gradient(700px 360px at 50% 0%,rgba(225,29,46,.18),transparent 65%),var(--bg)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;align-items:start}
+.info p{color:var(--muted);margin-bottom:14px}
+.info b{color:var(--text)}
+form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:grid;gap:14px}
+label{font-size:.85rem;color:var(--muted)}
+input,select,textarea{width:100%;background:#0e0e11;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px 14px;font:inherit;margin-top:6px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+textarea{min-height:100px;resize:vertical}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.9rem}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .hero-grid,.contact-grid{grid-template-columns:1fr}
+  .burger{display:block}
+  .nav ul{position:absolute;top:66px;left:0;right:0;background:var(--bg2);flex-direction:column;gap:0;border-bottom:1px solid var(--line);display:none}
+  .nav ul.open{display:flex}
+  .nav ul li a{display:block;padding:16px 4%}
+  section{padding:64px 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="logo">RESTO<span>MOTIF</span></a>
+    <button class="burger" id="burger" aria-label="Buka menu">☰</button>
+    <ul id="menu">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#galeri">Before-After</a></li>
+      <li><a href="#proses">Proses</a></li>
+      <li><a href="#video">Alur Video</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Jasa Restorasi Mobil</span>
+        <h1>Dari karatan jadi <em>kinclong</em>. Mobil impian hidup lagi.</h1>
+        <p>Kami menghidupkan kembali mobil klasik dan mobil tua Anda: bodi, cat, mesin, hingga interior, dikerjakan teliti oleh teknisi berpengalaman.</p>
+        <div class="hero-cta">
+          <a href="#kontak" class="btn btn-primary">Konsultasi Gratis</a>
+          <a href="#galeri" class="btn btn-ghost">Lihat Before-After</a>
+        </div>
+        <div class="stats">
+          <div><b>350+</b><small>Mobil direstorasi</small></div>
+          <div><b>12 th</b><small>Pengalaman</small></div>
+          <div><b>4.9/5</b><small>Kepuasan klien</small></div>
+        </div>
+      </div>
+      <div class="hero-visual"><span class="chip">Restorasi Total</span></div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section id="layanan">
+    <div class="container center">
+      <span class="eyebrow">Layanan</span>
+      <h2>Semua yang mobil Anda butuhkan</h2>
+      <p class="lead">Dari perbaikan kecil sampai restorasi total (frame-off), semuanya ditangani satu atap.</p>
+      <div class="cards" style="text-align:left">
+        <div class="card"><div class="icon">🛠️</div><h3>Restorasi Total</h3><p>Bongkar penuh, perbaikan rangka, dan perakitan ulang sampai kondisi seperti baru.</p></div>
+        <div class="card"><div class="icon">🎨</div><h3>Pengecatan & Bodi</h3><p>Ketok magic, dempul presisi, cat ulang warna orisinal atau custom dengan clear coat tahan lama.</p></div>
+        <div class="card"><div class="icon">⚙️</div><h3>Overhaul Mesin</h3><p>Turun mesin, ganti komponen aus, setel ulang agar tenaga dan suara kembali halus.</p></div>
+        <div class="card"><div class="icon">💺</div><h3>Interior & Jok</h3><p>Jok kulit, dashboard, headliner, dan karpet dikerjakan rapi sesuai gaya aslinya.</p></div>
+        <div class="card"><div class="icon">✨</div><h3>Detailing & Coating</h3><p>Poles, nano ceramic coating, dan perawatan agar kilau awet bertahun-tahun.</p></div>
+        <div class="card"><div class="icon">🔩</div><h3>Pencarian Spare Part</h3><p>Kami carikan suku cadang langka, orisinal maupun reproduksi berkualitas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERI BEFORE-AFTER -->
+  <section id="galeri" class="gallery">
+    <div class="container center">
+      <span class="eyebrow">Galeri</span>
+      <h2>Geser untuk lihat transformasinya</h2>
+      <p class="lead">Tarik slider ke kiri dan kanan untuk membandingkan kondisi sebelum dan sesudah restorasi.</p>
+      <div class="ba-grid" style="text-align:left">
+        <div>
+          <div class="ba">
+            <div class="layer before"><span class="tag">Foto before</span></div>
+            <div class="layer after"><span class="tag">Foto after</span></div>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Geser perbandingan before after">
+          </div>
+          <div class="ba-title">Muscle car klasik</div>
+          <div class="ba-sub">Restorasi total, cat merah metalik</div>
+        </div>
+        <div>
+          <div class="ba">
+            <div class="layer before"><span class="tag">Foto before</span></div>
+            <div class="layer after"><span class="tag">Foto after</span></div>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="35" aria-label="Geser perbandingan before after">
+          </div>
+          <div class="ba-title">VW Kombi retro</div>
+          <div class="ba-sub">Bodi, cat, dan interior</div>
+        </div>
+        <div>
+          <div class="ba">
+            <div class="layer before"><span class="tag">Foto before</span></div>
+            <div class="layer after"><span class="tag">Foto after</span></div>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="65" aria-label="Geser perbandingan before after">
+          </div>
+          <div class="ba-title">Sedan sport tahun 90-an</div>
+          <div class="ba-sub">Overhaul mesin dan detailing</div>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:22px;font-size:.85rem">Ganti kotak placeholder dengan foto asli Anda lewat CSS <code>background-image</code> pada <code>.before</code> dan <code>.after</code>.</p>
+    </div>
+  </section>
+
+  <!-- PROSES -->
+  <section id="proses">
+    <div class="container center">
+      <span class="eyebrow">Proses Restorasi</span>
+      <h2>Langkah kerja yang transparan</h2>
+      <p class="lead">Anda tahu progres di setiap tahap, lengkap dengan foto dan laporan berkala.</p>
+      <div class="steps" style="text-align:left">
+        <div class="step"><h3>Inspeksi & Estimasi</h3><p>Cek kondisi menyeluruh dan rincian biaya di awal.</p></div>
+        <div class="step"><h3>Bongkar & Analisis</h3><p>Komponen dilepas, karat dan kerusakan dipetakan.</p></div>
+        <div class="step"><h3>Perbaikan Bodi</h3><p>Las, ketok, dempul, dan amplas sampai rata.</p></div>
+        <div class="step"><h3>Pengecatan</h3><p>Primer, base coat, clear coat, lalu pengeringan oven.</p></div>
+        <div class="step"><h3>Perakitan & Test</h3><p>Pasang ulang mesin dan interior, uji jalan menyeluruh.</p></div>
+        <div class="step"><h3>Detailing & Serah Terima</h3><p>Poles akhir, coating, dan serah terima mobil.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALUR VIDEO -->
+  <section id="video" class="story">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Konten Video</span>
+        <h2>Alur Cerita Video 16 Detik</h2>
+        <p class="lead">Transformasi mobil dari rusak dan kusam menjadi baru dan berkilau. 4 scene × 4 detik, siap dibuat di Google Flow AI Videos.</p>
+      </div>
+
+      <div class="timeline" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
+
+      <div class="scenes">
+        <article class="scene">
+          <div class="scene-head"><b>Scene 1: Kondisi Awal</b><span class="time">0–4s</span></div>
+          <dl>
+            <dt>Visual / Kamera</dt><dd>Wide shot rendah di garasi tua yang remang. Kamera dolly-in perlahan ke arah mobil klasik berkarat tertutup debu.</dd>
+            <dt>Aksi / Gerakan</dt><dd>Debu melayang di sinar lampu redup, tetesan air jatuh dari atap garasi, cat mengelupas dan karat terlihat jelas.</dd>
+            <dt>Teks Overlay</dt><dd>"BEFORE"</dd>
+            <dt>Audio / Musik</dt><dd>Ambience sunyi, dengung rendah, tetesan air. Nada piano minor tipis.</dd>
+          </dl>
+        </article>
+        <article class="scene">
+          <div class="scene-head"><b>Scene 2: Proses Kerja</b><span class="time">4–8s</span></div>
+          <dl>
+            <dt>Visual / Kamera</dt><dd>Quick cut close-up: amplas, las dengan percikan api, semprotan cat. Kamera handheld dinamis.</dd>
+            <dt>Aksi / Gerakan</dt><dd>Karat terkelupas, percikan api oranye, lapisan cat merah menutup bodi, gerakan cepat dan bertenaga.</dd>
+            <dt>Teks Overlay</dt><dd>"PROSES RESTORASI"</dd>
+            <dt>Audio / Musik</dt><dd>Beat naik cepat, suara gerinda dan semprotan sinkron dengan ketukan.</dd>
+          </dl>
+        </article>
+        <article class="scene">
+          <div class="scene-head"><b>Scene 3: Transformasi</b><span class="time">8–12s</span></div>
+          <dl>
+            <dt>Visual / Kamera</dt><dd>Kamera orbit 180° mengelilingi mobil. Kain penutup ditarik dan menyingkap bodi mengilap.</dd>
+            <dt>Aksi / Gerakan</dt><dd>Seberkas cahaya menyapu bodi dari depan ke belakang, kondisi berubah dari kusam ke merah metalik berkilau.</dd>
+            <dt>Teks Overlay</dt><dd>Tidak ada (fokus ke visual)</dd>
+            <dt>Audio / Musik</dt><dd>Build-up musik menuju drop, suara "whoosh" saat kain terbuka.</dd>
+          </dl>
+        </article>
+        <article class="scene">
+          <div class="scene-head"><b>Scene 4: Hasil Akhir</b><span class="time">12–16s</span></div>
+          <dl>
+            <dt>Visual / Kamera</dt><dd>Hero shot sinematik di jalan saat golden hour. Kamera tracking sejajar mobil, berakhir diam pada tampak depan.</dd>
+            <dt>Aksi / Gerakan</dt><dd>Mobil melaju pelan, lampu depan menyala, pantulan matahari memantul di bodi dan velg.</dd>
+            <dt>Teks Overlay</dt><dd>"AFTER • Hubungi Kami"</dd>
+            <dt>Audio / Musik</dt><dd>Drop epik, deru mesin V8 halus, ditutup nada panjang yang memudar.</dd>
+          </dl>
+        </article>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-top">
+          <b>Prompt Google Flow AI Videos (16 detik)</b>
+          <button class="btn btn-primary" id="copyBtn" type="button">Salin Prompt</button>
+        </div>
+<pre id="promptText">A 16-second cinematic car restoration transformation video, vertical 9:16, ultra-realistic, 4K, 24fps, shot on anime-free photorealistic cinema camera look. The video has exactly 4 scenes of 4 seconds each.
+
+Scene 1 (0-4s): A dim, dusty old garage. A rusty, neglected classic muscle car with peeling paint and heavy corrosion sits under a weak overhead bulb. Slow dolly-in from a low wide angle. Dust particles float in the light beams, water drips from the ceiling. Desaturated, moody, cold color grade. Quiet ambience with a low hum.
+
+Scene 2 (4-8s): Fast-paced montage of close-up shots: sandpaper stripping rust, bright orange welding sparks flying, a spray gun laying glossy red paint over the body. Dynamic handheld camera, rapid cuts synced to a rising beat, warm orange highlights, sound of grinding and spraying.
+
+Scene 3 (8-12s): The transformation reveal. A dust cover is pulled off the car and a 180-degree orbiting camera circles it. A sweeping beam of light glides across the body, turning the dull, rusty car into a flawless metallic red finish with deep clear-coat reflections and chrome details. Music builds up to a drop, with a whoosh sound.
+
+Scene 4 (12-16s): Golden hour hero shot on an empty scenic road. The fully restored car drives slowly toward camera with headlights on, sun glinting off the polished paint and wheels. Smooth tracking shot alongside the car, ending on a steady front-facing hero frame. Epic cinematic color grade, shallow depth of field, lens flares, smooth V8 engine rumble fading out.
+
+Style: premium commercial, before-and-after transformation, high contrast, sharp details, no text, no logos, no watermark, consistent car design across all scenes, smooth continuous motion, total duration exactly 16 seconds.</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section id="testimoni">
+    <div class="container center">
+      <span class="eyebrow">Testimoni</span>
+      <h2>Kata mereka yang sudah merasakan</h2>
+      <div class="cards" style="text-align:left">
+        <div class="card quote"><div class="stars">★★★★★</div><p>"Mobil warisan bapak yang sudah 15 tahun mangkrak sekarang kinclong dan mesinnya halus. Hasilnya melebihi harapan."</p><div class="who"><div class="avatar">BA</div><div><b>Budi A.</b><small>Pemilik Toyota Corolla 1982</small></div></div></div>
+        <div class="card quote"><div class="stars">★★★★★</div><p>"Update progres rutin dengan foto, jadi tenang. Warna cat persis seperti aslinya, rapi sekali."</p><div class="who"><div class="avatar">SR</div><div><b>Sinta R.</b><small>Pemilik VW Kombi 1975</small></div></div></div>
+        <div class="card quote"><div class="stars">★★★★★</div><p>"Harga transparan dan pengerjaan tepat waktu. Sekarang mobil saya jadi pusat perhatian di setiap acara."</p><div class="who"><div class="avatar">DP</div><div><b>Dimas P.</b><small>Pemilik Ford Mustang 1969</small></div></div></div>
+      </div>
+      <p class="lead" style="margin-top:20px;font-size:.8rem">*Nama dan testimoni di atas adalah contoh placeholder. Ganti dengan testimoni klien asli Anda.</p>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak" class="contact">
+    <div class="container center">
+      <span class="eyebrow">Kontak</span>
+      <h2>Siap menghidupkan kembali mobil Anda?</h2>
+      <p class="lead">Kirim detail mobil Anda dan dapatkan estimasi gratis. Kami balas lewat WhatsApp.</p>
+      <div class="contact-grid" style="text-align:left">
+        <div class="info">
+          <p><b>📍 Bengkel</b><br>Jl. Contoh No. 123, Bekasi, Jawa Barat</p>
+          <p><b>🕒 Jam buka</b><br>Senin–Sabtu, 08.00–17.00 WIB</p>
+          <p><b>📞 WhatsApp</b><br>+62 812-3456-7890</p>
+          <p><b>✉️ Email</b><br>halo@restomotif.example</p>
+        </div>
+        <form id="contactForm">
+          <div><label for="nama">Nama</label><input id="nama" required placeholder="Nama Anda"></div>
+          <div><label for="mobil">Mobil & tahun</label><input id="mobil" required placeholder="Contoh: Toyota Corolla 1982"></div>
+          <div><label for="layanan">Layanan</label>
+            <select id="layanan">
+              <option>Restorasi Total</option><option>Pengecatan & Bodi</option><option>Overhaul Mesin</option><option>Interior & Jok</option><option>Detailing & Coating</option>
+            </select>
+          </div>
+          <div><label for="pesan">Catatan</label><textarea id="pesan" placeholder="Ceritakan kondisi mobil Anda..."></textarea></div>
+          <button class="btn btn-primary" type="submit">Kirim via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container foot">
+    <span>© <span id="yr"></span> RESTOMOTIF. Semua hak dilindungi.</span>
+    <span>Restorasi mobil • Before-After • Detailing</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Tahun footer
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Menu mobile
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  burger.addEventListener('click', function(){ menu.classList.toggle('open'); });
+  menu.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ menu.classList.remove('open'); }
+  });
+
+  // Slider before-after
+  document.querySelectorAll('.ba').forEach(function(ba){
+    var input = ba.querySelector('input[type=range]');
+    function update(){ ba.style.setProperty('--pos', input.value + '%'); }
+    input.addEventListener('input', update);
+    update();
+  });
+
+  // Salin prompt
+  var btn = document.getElementById('copyBtn');
+  var text = document.getElementById('promptText');
+  function done(){
+    var old = btn.textContent;
+    btn.textContent = '✓ Tersalin!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = old; btn.classList.remove('copied'); }, 2000);
+  }
+  function fallback(){
+    var r = document.createRange();
+    r.selectNodeContents(text);
+    var s = window.getSelection();
+    s.removeAllRanges(); s.addRange(r);
+    try{ document.execCommand('copy'); done(); }catch(e){ alert('Salin manual: blok teks prompt lalu tekan Ctrl+C.'); }
+    s.removeAllRanges();
+  }
+  btn.addEventListener('click', function(){
+    var value = text.textContent.trim();
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(value).then(done).catch(fallback);
+    }else{
+      fallback();
+    }
+  });
+
+  // Form -> WhatsApp (ganti nomor di bawah)
+  var WA_NUMBER = '6281234567890';
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var msg = 'Halo, saya ' + document.getElementById('nama').value +
+      '.%0AMobil: ' + encodeURIComponent(document.getElementById('mobil').value) +
+      '%0ALayanan: ' + encodeURIComponent(document.getElementById('layanan').value) +
+      '%0ACatatan: ' + encodeURIComponent(document.getElementById('pesan').value);
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + msg, '_blank');
+  });
+})();
+</script>
+</body>
+</html>
